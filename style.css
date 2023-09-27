@@ -9,4 +9,19 @@
      float: right;
      border: 1px solid white;
  }
+ .modal-dialog{
+    width: 70%;
+}
+#instructions{
+    color: black;
+}
+.footer{
+    position: fixed;
+    color: rgb(6, 6, 6);
+    bottom: 0;
+    width: 100%;
+    background-color: rgb(251, 250, 250);
+    line-height: 3;
+    text-align: center;
+}
  
