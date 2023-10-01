@@ -23,8 +23,16 @@ var ball = {
 
 function setup(){
   var canvas =  createCanvas(700,600);
+    
+    video=createCapture(VIDEO);
+    video.size(650,400)
     canvas.parent("canvas")
-  
+    
+    
+}
+
+function modelLoaded(){
+  console.log("PoseNet is initialized")
 }
 
 
@@ -98,9 +106,9 @@ function drawScore(){
     textSize(20);
     fill("white");
     stroke(250,0,0)
-    text("Player:",100,50)
+    text("Player : ",100,50)
     text(playerscore,140,50);
-    text("Computer:",500,50)
+    text("Computer : ",500,50)
     text(pcscore,555,50)
 }
 
