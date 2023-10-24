@@ -20,15 +20,31 @@ var ball = {
     dx:3,
     dy:3
 }
+rightwristx="";
+rightwristy="";
+function gotPoses(results)
+  {
+	if(results.length > 0)
+	{
+	  rightwristX = results[0].pose.rightWrist.x;
+	  rightwristY = results[0].pose.rightWrist.y;
+	  console.log(results);
 
+    console.log("rightwristx=   "+rightwristx+"      rightwristy=        "+rightwristy);
+	}
+  }
 function setup(){
   var canvas =  createCanvas(700,600);
     
     video=createCapture(VIDEO);
     video.size(650,400)
     canvas.parent("canvas")
+
+    video = createCapture(VIDEO);
+  	video.size(800,400);
     
-    
+    poseNet = ml5.poseNet(video, modelLoaded);
+	  poseNet.on('pose', gotPoses);
 }
 
 function modelLoaded(){
