@@ -24,8 +24,8 @@ rightwristx="";
 rightwristy="";
 function gotPoses(results)
   {
-	if(results.length > 0)
-	{
+	if(results.length > 0){
+    game_status=""
 	  rightwristX = results[0].pose.rightWrist.x;
 	  rightwristY = results[0].pose.rightWrist.y;
 	  console.log(results);
@@ -68,7 +68,7 @@ function draw(){
    fill(250,0,0);
     stroke(0,0,250);
     strokeWeight(0.5);
-   paddle1Y = mouseY; 
+   paddle1Y = rightwristy; 
    rect(paddle1X,paddle1Y,paddle1,paddle1Height,100);
    
    
@@ -139,12 +139,14 @@ function move(){
    }
   if (ball.x-2.5*ball.r/2< 0){
   if (ball.y >= paddle1Y&& ball.y <= paddle1Y + paddle1Height) {
+    ball_touch_paddel.play();
     ball.dx = -ball.dx+0.5;
     playerscore++;
   }
   else{
     pcscore++;
     reset();
+    missed.play();
     navigator.vibrate(100);
   }
 }
@@ -156,7 +158,7 @@ if(pcscore ==4){
     stroke("white");
     textSize(25)
     text("Game Over!☹☹",width/2,height/2);
-    text("Reload The Page!",width/2,height/2+30)
+    text("Press Restart Button To Play Again!",width/2,height/2+30)
     noLoop();
     pcscore = 0;
 }
@@ -185,4 +187,13 @@ function paddleInCanvas(){
   if(mouseY < 0){
     mouseY =0;
   }  
+}
+function preload(){
+  ball_touch_paddel=loadSound("ball_touch_paddel.wav");
+  missed=loadSound("missed.wav");
+}
+function restart(){
+  pcscore = 0;
+  playerscore=0
+  loop()
 }
